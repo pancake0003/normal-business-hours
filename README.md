@@ -19,3 +19,4 @@ After finishing the local troubleshoots, I moved on to Digital Ocean. This part 
 And finally I had it running successfully on DigitalOcean as well!
 <img width="823" alt="Screen Shot 2023-11-28 at 5 27 40 AM" src="https://github.com/pancake0003/normal-business-hours/assets/146360951/4415d85e-38c8-468c-a021-1d73c6f57952">
 
+visit [http://24.144.64.246:3000/] to see my resume page!
