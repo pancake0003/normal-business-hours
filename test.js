@@ -23,7 +23,7 @@ function workingHours(req, res, next) {
   const normalBusinessHours = {
     // 24 hour time
     open: 15,
-    close: 5,
+    close: 3,
   };
 
   // check if within normal business hours
@@ -31,7 +31,7 @@ function workingHours(req, res, next) {
     currentHour <= normalBusinessHours.close) {
     // if so, point the request to our static files
     console.log('Open!');
-    req.url = 'accepted.html';
+    req.url = 'JoySong-resume.pdf';
     next();
   } 
   else {
