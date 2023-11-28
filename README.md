@@ -14,6 +14,7 @@ I tried searching on stack overflow, and their answer seems to be that since i'm
 <img width="860" alt="Screen Shot 2023-11-28 at 4 35 31 AM" src="https://github.com/pancake0003/normal-business-hours/assets/146360951/3b99da4f-3838-4ba6-8a58-5b6ee9afb9a9">
 
 After finishing the local troubleshoots, I moved on to Digital Ocean. This part went fairly smooth: I got a reserved IP address, I cloned Git repository and tried launching it with pm2. The only minor issue I ran into was that I forgot to npm install AGAIN :(((( But i fixed it very quickly. 
+
 <img width="767" alt="Screen Shot 2023-11-28 at 5 27 07 AM" src="https://github.com/pancake0003/normal-business-hours/assets/146360951/9d16f764-3cfe-464a-8a39-5b197d283567">
 
 And finally I had it running successfully on DigitalOcean as well!
