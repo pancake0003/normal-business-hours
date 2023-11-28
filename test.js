@@ -22,27 +22,22 @@ function workingHours(req, res, next) {
 
   const normalBusinessHours = {
     // 24 hour time
-    open: 9,
-    close: 17,
+    open: 15,
+    close: 2,
   };
 
   // check if within normal business hours
-  if (
-    currentHour >= normalBusinessHours.open &&
-    currentHour <= normalBusinessHours.close
-  ) {
-
+  if (currentHour >= normalBusinessHours.open ||
+    currentHour <= normalBusinessHours.close) {
     // if so, point the request to our static files
     console.log('Open!');
-    req.url = 'chauncey-gardiner-resume.pdf';
+    req.url = 'JoySong-resume.pdf';
     next();
-
-  } else {
-    
+  } 
+  else {
     // otherwise, return the denial
-    console.log('Closed 🔒');
+    //console.log('Closed 🔒');
     req.url = 'denied.html';
     next();
-
   }
 }
