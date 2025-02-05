@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
@@ -31,13 +32,15 @@ function workingHours(req, res, next) {
     currentHour <= normalBusinessHours.close) {
     // if so, point the request to our static files
     console.log('Open!');
-    req.url = 'JoySong-resume.pdf';
-    next();
+    // req.url = 'public/Yuemeng_Song_Resume.pdf';
+    res.sendFile(path.join(__dirname, 'public', 'Yuemeng_Song_Resume.pdf'));
+    // next();
   } 
   else {
     // otherwise, return the denial
     //console.log('Closed 🔒');
-    req.url = 'denied.html';
-    next();
+    // req.url = 'denied.html';
+    res.sendFile(path.join(__dirname, 'public', 'denied.html'));
+    // next();
   }
 }
