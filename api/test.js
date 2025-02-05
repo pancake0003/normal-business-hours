@@ -31,10 +31,13 @@ function workingHours(req, res, next) {
   }
 }
 
-// ✅ Serve static files from `/public`
+app.use(workingHours);
 app.use(express.static(path.join(__dirname, '../public')));
 
-// ✅ Serve `index.html` from `/public`
+// Debugging log for serving static files
+console.log("Serving static files from:", path.join(__dirname, '../public'));
+
+// Debugging logs for GET routes
 app.get('/', (req, res) => {
   console.log("Serving index.html");
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
