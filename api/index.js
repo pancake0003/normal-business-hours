@@ -27,7 +27,7 @@ function workingHours(req, res, next) {
     next();
   } else {
     console.log("Outside business hours: Redirecting to denied.html");
-    res.sendFile(path.join(__dirname, 'public', 'denied.html')); // Correct path
+    res.sendFile(path.resolve('public', 'denied.html')); // Explicit absolute path
   }
 }
 
