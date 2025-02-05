@@ -24,4 +24,4 @@ And finally I had it running successfully on DigitalOcean as well!
 
 ## I have decided to switch to vercel because Digital Ocean is unstable. 
 
-please visit ... for my website!
+please visit [normal-business-hours-remade.vercel.app](normal-business-hours-remade.vercel.app) for my website!
