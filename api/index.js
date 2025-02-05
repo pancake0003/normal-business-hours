@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-// Debugging middleware to log incoming requests
+// Debugging middleware to log every request
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.path}`);
   next();
@@ -32,16 +32,21 @@ function workingHours(req, res, next) {
   }
 }
 
+// Apply middleware
 app.use(workingHours);
 app.use(express.static(path.join(__dirname, '../public')));
 
+// Debugging log for serving static files
+console.log("Serving static files from:", path.join(__dirname, '../public'));
+
+// Debugging logs for GET routes
 app.get('/', (req, res) => {
-  console.log("Serving index.html");
+  console.log("Handling GET / - Serving index.html");
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 app.get('/api', (req, res) => {
-  console.log("API check successful");
+  console.log("Handling GET /api - API check successful");
   res.json({ message: 'API is working!' });
 });
 
