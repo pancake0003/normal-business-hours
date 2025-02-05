@@ -12,8 +12,8 @@ function workingHours(req, res, next) {
   const currentHour = currentTime.getHours();
 
   const normalBusinessHours = {
-    open: 11, 
-    close: 3, 
+    open: 11,
+    close: 3,
   };
 
   if (currentHour >= normalBusinessHours.open || currentHour < normalBusinessHours.close) {
@@ -21,10 +21,15 @@ function workingHours(req, res, next) {
     next();
   } else {
     console.log('Closed 🔒');
-    res.sendFile(path.join(__dirname, 'public', 'denied.html'));
+    res.sendFile(path.join(__dirname, '../public', 'denied.html'));
   }
 }
 
 app.use(workingHours);
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
+
 module.exports = app;
