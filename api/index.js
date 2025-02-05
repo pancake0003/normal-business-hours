@@ -27,7 +27,7 @@ function workingHours(req, res, next) {
     next();
   } else {
     console.log("Outside business hours: Redirecting to denied.html");
-    res.sendFile(path.resolve('public', 'denied.html')); // Explicit absolute path
+    res.sendFile(path.resolve('public', 'denied.html'));
   }
 }
 
@@ -36,8 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ Serve index.html from root `/public`
 app.get('/', (req, res) => {
-  console.log("Serving index.html");
-  res.sendFile(path.join(__dirname, 'public', 'index.html')); // Correct path
+  console.log("Serving denied.html");
+  res.sendFile(path.join(__dirname, 'public', 'denied.html'));
 });
 
 // ✅ API Test Route
