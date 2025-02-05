@@ -27,23 +27,20 @@ function workingHours(req, res, next) {
     next();
   } else {
     console.log("Outside business hours: Redirecting to denied.html");
-    res.sendFile(path.join(__dirname, '../public', 'denied.html'));
+    res.sendFile(path.join(__dirname, 'public', 'denied.html')); // Correct path
   }
 }
 
-app.use(workingHours);
-app.use(express.static(path.join(__dirname, '../public')));
+// ✅ Serve static files correctly
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Debugging log for serving static files
-console.log("Serving static files from:", path.join(__dirname, '../public'));
-
-// Debugging logs for GET routes
+// ✅ Serve index.html from root `/public`
 app.get('/', (req, res) => {
   console.log("Serving index.html");
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // Correct path
 });
 
-// API Test Route
+// ✅ API Test Route
 app.get('/api', (req, res) => {
   console.log("API check successful");
   res.json({ message: 'API is working!' });
