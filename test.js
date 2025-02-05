@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
+const { createServer } = require('@vercel/node');
 const app = express();
-const port = 3000;
+// const port = 3000;
 
 // in middleware, the order matters...
 // check the hour first!
@@ -16,31 +17,29 @@ app.listen(port, () => {
 // our custom middleware function
 function workingHours(req, res, next) {
 
-  // get the current time
   const currentTime = new Date();
-  // get the hour
   const currentHour = currentTime.getHours();
 
   const normalBusinessHours = {
     // 24 hour time
-    open: 15,
+    open: 11,
     close: 3,
   };
 
-  // check if within normal business hours
   if (currentHour >= normalBusinessHours.open ||
     currentHour <= normalBusinessHours.close) {
-    // if so, point the request to our static files
     console.log('Open!');
     // req.url = 'public/Yuemeng_Song_Resume.pdf';
     res.sendFile(path.join(__dirname, 'public', 'Yuemeng_Song_Resume.pdf'));
     // next();
   } 
   else {
-    // otherwise, return the denial
-    //console.log('Closed 🔒');
     // req.url = 'denied.html';
     res.sendFile(path.join(__dirname, 'public', 'denied.html'));
     // next();
   }
 }
+
+app.use(workingHours);
+app.use(express.static('public'));
+module.exports = app;
