@@ -3,8 +3,15 @@ const path = require('path');
 
 const app = express();
 
+// Debugging middleware to log incoming requests
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.path}`);
+  next();
+});
+
 function workingHours(req, res, next) {
   if (req.path === '/Yuemeng_Song_Resume.pdf') {
+    console.log("Accessing resume: Allowed");
     return next();
   }
 
@@ -12,15 +19,15 @@ function workingHours(req, res, next) {
   const currentHour = currentTime.getHours();
 
   const normalBusinessHours = {
-    open: 11,
+    open: 15,
     close: 3,
   };
 
   if (currentHour >= normalBusinessHours.open || currentHour < normalBusinessHours.close) {
-    console.log('Open!');
+    console.log("Within business hours: Allowed");
     next();
   } else {
-    console.log('Closed 🔒');
+    console.log("Outside business hours: Redirecting to denied.html");
     res.sendFile(path.join(__dirname, '../public', 'denied.html'));
   }
 }
@@ -29,10 +36,12 @@ app.use(workingHours);
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
+  console.log("Serving index.html");
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 app.get('/api', (req, res) => {
+  console.log("API check successful");
   res.json({ message: 'API is working!' });
 });
 
