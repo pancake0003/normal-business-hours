@@ -3,12 +3,13 @@ const path = require('path');
 
 const app = express();
 
-// Debugging middleware to log every request
+// Debugging: Log every request
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.path}`);
   next();
 });
 
+// Middleware: Business Hours Check
 function workingHours(req, res, next) {
   if (req.path === '/Yuemeng_Song_Resume.pdf') {
     console.log("Accessing resume: Allowed");
@@ -28,25 +29,24 @@ function workingHours(req, res, next) {
     next();
   } else {
     console.log("Outside business hours: Redirecting to denied.html");
-    res.sendFile(path.join(__dirname, '../public', 'denied.html'));
+    res.sendFile(path.join(__dirname, 'public', 'denied.html'));
   }
 }
 
-// Apply middleware
 app.use(workingHours);
-app.use(express.static(path.join(__dirname, '../public')));
 
-// Debugging log for serving static files
-console.log("Serving static files from:", path.join(__dirname, '../public'));
+// ✅ Corrected: Serve static files from `api/public`
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Debugging logs for GET routes
+// ✅ Corrected: Serve `index.html` from `api/public`
 app.get('/', (req, res) => {
-  console.log("Handling GET / - Serving index.html");
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  console.log("Serving index.html");
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// API Test Route
 app.get('/api', (req, res) => {
-  console.log("Handling GET /api - API check successful");
+  console.log("API check successful");
   res.json({ message: 'API is working!' });
 });
 
